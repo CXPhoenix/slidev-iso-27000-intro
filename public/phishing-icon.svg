@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格釣魚竿 -->
+  <path d="M15,20 L35,40" stroke="#593c47" stroke-width="4" />
+  <path d="M35,40 C38,43 38,80 38,85" stroke="#593c47" stroke-width="3" />
+  
+  <!-- 釣魚線 -->
+  <path d="M38,45 C50,50 65,75 65,80" stroke="#593c47" stroke-width="1" stroke-dasharray="3,3" />
+  
+  <!-- 釣魚鉤與信封 -->
+  <path d="M65,80 C63,82 63,90 65,92" stroke="#593c47" stroke-width="2" />
+  <rect x="54" y="70" width="20" height="15" rx="2" ry="2" fill="#F2E63D" stroke="#593c47" stroke-width="1.5" />
+  <path d="M54,70 L64,80 L74,70" stroke="#593c47" stroke-width="1.5" />
+  
+  <!-- 人物剪影 (被釣魚的目標) -->
+  <circle cx="75" cy="50" r="8" fill="#f25c05" stroke="#593c47" stroke-width="1.5" />
+  <path d="M70,65 C70,60 80,60 80,65 L80,75 C80,80 70,80 70,75 Z" fill="#f25c05" stroke="#593c47" stroke-width="1.5" />
+  <path d="M75,58 L75,65 M70,62 L75,65 L80,62" stroke="#593c47" stroke-width="1.5" />
+  
+  <!-- 問號 (表示困惑) -->
+  <path d="M85,45 C85,42 83,40 80,40 C77,40 75,42 75,45 C75,47 77,48 77,50" stroke="#593c47" stroke-width="1.5" />
+  <circle cx="77" cy="53" r="1" fill="#593c47" />
+</svg>

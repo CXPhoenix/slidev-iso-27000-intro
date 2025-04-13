@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 神秘人形象 - 兜帽陰影 -->
+  <path d="M20,75 C20,45 25,30 50,30 C75,30 80,45 80,75" fill="#323232" style="filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.3));" />
+  
+  <!-- 兜帽邊緣 -->
+  <path d="M20,75 C25,69 35,65 50,65 C65,65 75,69 80,75" fill="#282828" stroke="none" />
+  
+  <!-- 臉部隱藏在陰影中 -->
+  <circle cx="50" cy="55" r="15" fill="#161616" stroke="none" />
+  
+  <!-- 神秘眼睛亮光 -->
+  <path d="M44,53 C45,51 47,51 48,53" stroke="#F2C53D" stroke-width="1.5" />
+  <path d="M52,53 C53,51 55,51 56,53" stroke="#F2C53D" stroke-width="1.5" />
+  
+  <!-- 電腦代碼雲 -->
+  <path d="M15,30 C12,28 13,25 15,25 C22,25 25,15 35,15 C55,15 60,30 75,25 C80,23 83,30 80,32" fill="#F2E63D" fill-opacity="0.4" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));" />
+  
+  <!-- 代碼文字 -->
+  <text x="22" y="22" font-family="monospace" font-size="5" fill="#593c47">010</text>
+  <text x="40" y="22" font-family="monospace" font-size="5" fill="#593c47">111</text>
+  <text x="58" y="22" font-family="monospace" font-size="5" fill="#593c47">101</text>
+  <text x="76" y="22" font-family="monospace" font-size="5" fill="#593c47">001</text>
+  
+  <!-- 鍵盤指示 -->
+  <rect x="30" y="80" width="40" height="5" rx="2" ry="2" fill="#444444" stroke="#282828" stroke-width="1" />
+  
+  <!-- 數位足跡 -->
+  <path d="M15,85 C20,80 25,82 30,85" stroke="#f25c05" stroke-width="1" stroke-dasharray="2,2" />
+  <path d="M70,85 C75,80 80,82 85,85" stroke="#f25c05" stroke-width="1" stroke-dasharray="2,2" />
+  
+  <!-- 隱藏的連接點 -->
+  <circle cx="18" cy="38" r="2" fill="#f25c05" fill-opacity="0.6" />
+  <circle cx="82" cy="38" r="2" fill="#f25c05" fill-opacity="0.6" />
+  <path d="M18,38 C15,45 15,50 18,55" stroke="#f25c05" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="2,2" />
+  <path d="M82,38 C85,45 85,50 82,55" stroke="#f25c05" stroke-width="1" stroke-opacity="0.6" stroke-dasharray="2,2" />
+</svg>

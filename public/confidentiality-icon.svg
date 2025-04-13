@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格文件 -->
+  <path d="M30,20 C28,19 28,18 30,18 L60,18 C62,18 62,19 62,20 L62,70 C62,72 61,72 60,72 L30,72 C29,72 28,72 28,70 L28,22 C28,21 29,20 30,20 Z" fill="white" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));" />
+  
+  <!-- 加密數據符號 -->
+  <path d="M35,30 L55,30" stroke="#593c47" stroke-width="1.5" />
+  <path d="M35,38 L45,38" stroke="#593c47" stroke-width="1.5" />
+  <path d="M35,46 L50,46" stroke="#593c47" stroke-width="1.5" />
+  
+  <!-- 加密代碼/二進制碼 -->
+  <text x="48" y="30" font-family="monospace" font-size="6" fill="#f24405">01</text>
+  <text x="48" y="38" font-family="monospace" font-size="6" fill="#f24405">10</text>
+  <text x="53" y="46" font-family="monospace" font-size="6" fill="#f24405">01</text>
+  
+  <!-- 鎖和鑰匙孔 -->
+  <rect x="35" y="50" width="30" height="25" rx="5" ry="5" fill="#F2E63D" stroke="#593c47" stroke-width="2" />
+  <path d="M43,50 L43,42 C43,37 47,32 50,32 C53,32 57,37 57,42 L57,50" stroke="#593c47" stroke-width="2" />
+  
+  <!-- 鑰匙孔 -->
+  <circle cx="50" cy="60" r="4" fill="#593c47" />
+  <path d="M50,64 L50,68" stroke="#593c47" stroke-width="2" />
+  
+  <!-- 加密符號/光環 -->
+  <path d="M35,25 C32,30 25,45 35,60" stroke="#f25c05" stroke-opacity="0.5" stroke-width="1" stroke-dasharray="3,2" />
+  <path d="M65,25 C68,30 75,45 65,60" stroke="#f25c05" stroke-opacity="0.5" stroke-width="1" stroke-dasharray="3,2" />
+  
+  <!-- 加密轉換元素 -->
+  <path d="M28,82 L35,78 L42,82 L49,78 L56,82 L63,78 L70,82" stroke="#f25c05" stroke-width="2" stroke-linecap="round" />
+  
+  <!-- 小型加密符號 -->
+  <text x="28" y="89" font-family="sans-serif" font-size="8" fill="#593c47">#</text>
+  <text x="37" y="89" font-family="sans-serif" font-size="8" fill="#593c47">@</text>
+  <text x="46" y="89" font-family="sans-serif" font-size="8" fill="#593c47">*</text>
+  <text x="55" y="89" font-family="sans-serif" font-size="8" fill="#593c47">&amp;</text>
+  <text x="64" y="89" font-family="sans-serif" font-size="8" fill="#593c47">%</text>
+</svg>

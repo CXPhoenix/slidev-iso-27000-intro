@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 警告三角形 -->
+  <path d="M20,80 C15,80 15,75 20,70 L45,25 C48,20 52,20 55,25 L80,70 C85,75 85,80 80,80 Z" fill="#F2E63D" />
+  <!-- 感嘆號 -->
+  <line x1="50" y1="40" x2="50" y2="60" stroke-width="6" stroke="#593c47" />
+  <circle cx="50" cy="70" r="3" fill="#593c47" />
+</svg>

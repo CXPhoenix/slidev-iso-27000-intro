@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 開啟的門 -->
+  <path d="M30,20 L30,80 L70,80 L70,20 Z" fill="none" />
+  <path d="M70,20 L70,80" stroke-width="3" />
+  <path d="M30,20 L70,20" stroke-width="3" />
+  <path d="M30,80 L70,80" stroke-width="3" />
+  <path d="M35,50 C32,50 32,45 35,45 L65,45 C68,45 68,50 65,50 Z" fill="#F2E63D" stroke-width="2" />
+  <!-- 開啟的門 -->
+  <path d="M30,20 L30,80 L60,75 L60,25 Z" fill="#F2C53D" stroke="#593c47" stroke-width="2" />
+  <circle cx="50" cy="50" r="3" fill="#593c47" />
+</svg>

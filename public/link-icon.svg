@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格鏈接 -->
+  <path d="M35,50 C28,50 22,56 22,63 C22,70 28,76 35,76 L45,76 C52,76 58,70 58,63" fill="none" />
+  <path d="M65,50 C72,50 78,44 78,37 C78,30 72,24 65,24 L55,24 C48,24 42,30 42,37" fill="none" />
+  <!-- 裝飾點 -->
+  <circle cx="35" cy="76" r="3" fill="#F2C53D" />
+  <circle cx="65" cy="24" r="3" fill="#F2C53D" />
+</svg>

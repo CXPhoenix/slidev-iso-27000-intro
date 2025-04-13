@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 100" fill="none">
+  <!-- 手繪風格的流程線 -->
+  <path d="M50,50 C70,46 90,54 110,50 C130,46 150,54 170,50 C190,46 210,54 230,50 C250,46 270,54 290,50 C310,46 330,54 350,50 C370,46 390,54 410,50 C430,46 450,54 470,50 C490,46 510,54 530,50 C550,46 570,54 590,50" stroke="#F2C53D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- 方向箭頭 -->
+  <path d="M110,40 L130,50 L110,60" stroke="#f25c05" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M230,40 L250,50 L230,60" stroke="#f25c05" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M350,40 L370,50 L350,60" stroke="#f25c05" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M470,40 L490,50 L470,60" stroke="#f25c05" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

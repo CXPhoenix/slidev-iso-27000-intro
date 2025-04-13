@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格圓形背景 -->
+  <circle cx="50" cy="50" r="35" fill="#F2E63D" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15));" />
+  
+  <!-- 手繪問號 -->
+  <path d="M40,35 C40,28 45,25 50,25 C55,25 60,28 60,35 C60,42 53,45 50,50" stroke="#593c47" stroke-width="5" />
+  
+  <!-- 問號點 -->
+  <circle cx="50" cy="65" r="4" fill="#593c47" />
+  
+  <!-- 裝飾線條 -->
+  <path d="M25,35 L30,35 M25,50 L30,50 M25,65 L30,65" stroke="#f25c05" stroke-width="1.5" />
+  <path d="M70,35 L75,35 M70,50 L75,50 M70,65 L75,65" stroke="#f25c05" stroke-width="1.5" />
+</svg>

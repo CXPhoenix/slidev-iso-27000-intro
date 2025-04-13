@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 循環箭頭 -->
+  <path d="M80,50 C80,70 65,85 50,85 C35,85 20,70 20,50 C20,30 35,15 50,15 C65,15 80,30 80,50 Z" fill="none" stroke-width="3" />
+  <path d="M50,15 L60,25 L40,25 Z" fill="#593c47" />
+  <!-- PDCA 文字 -->
+  <text x="36" y="45" font-family="sans-serif" font-size="16" font-weight="bold" stroke="none" fill="#593c47">P</text>
+  <text x="62" y="45" font-family="sans-serif" font-size="16" font-weight="bold" stroke="none" fill="#593c47">D</text>
+  <text x="62" y="65" font-family="sans-serif" font-size="16" font-weight="bold" stroke="none" fill="#593c47">C</text>
+  <text x="36" y="65" font-family="sans-serif" font-size="16" font-weight="bold" stroke="none" fill="#593c47">A</text>
+</svg>

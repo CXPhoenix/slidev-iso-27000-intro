@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格盾牌 -->
+  <path d="M50,15 C54,16 68,20 79,23 C79,45 79,59 69,74 C61,84 50,90 50,90 C50,90 39,84 31,74 C21,59 21,45 21,23 C32,20 46,16 50,15 Z" fill="#F2E63D" style="filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));" />
+  <!-- 手繪風格鎖 -->
+  <path d="M45,50 C45,43 44,40 50,40 C56,40 55,43 55,50" stroke-width="3" />
+  <rect x="38" y="50" width="24" height="20" rx="4" ry="4" fill="#f25c05" stroke="#593c47" stroke-width="2" style="filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.2));" />
+  <circle cx="50" cy="60" r="3" fill="#593c47" />
+  <line x1="50" y1="63" x2="50" y2="67" />
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格三角形警告標誌 -->
+  <path d="M50,15 C52,15 56,17 58,20 L88,75 C91,80 90,85 85,85 C75,85 25,85 15,85 C10,85 9,80 12,75 L42,20 C44,17 48,15 50,15 Z" fill="#F2E63D" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));" />
+  
+  <!-- 感嘆號 -->
+  <line x1="50" y1="35" x2="50" y2="60" stroke="#593c47" stroke-width="6" stroke-linecap="round" />
+  <circle cx="50" cy="70" r="4" fill="#593c47" />
+  
+  <!-- 裝飾線條 -->
+  <path d="M20,60 L25,60 M75,60 L80,60" stroke="#f25c05" stroke-width="1.5" />
+  <path d="M30,45 L35,45 M65,45 L70,45" stroke="#f25c05" stroke-width="1.5" />
+</svg>

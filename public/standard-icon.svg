@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格文件 -->
+  <path d="M30,15 C29,14 29,13 32,13 L70,13 C73,13 72,14 72,16 L72,88 C72,91 70,91 68,88 L30,88 C28,91 27,90 28,87 L28,18 C28,17 27,15 30,15 Z" fill="white" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));" />
+  <!-- ISO文字 -->
+  <path d="M40,33 L60,33 M40,43 L60,43 M40,53 L60,53 M40,63 L60,63 M40,73 L60,73" />
+  <text x="40" y="30" font-family="sans-serif" font-size="14" font-weight="bold" stroke="none" fill="#593c47">ISO</text>
+  <!-- 勾選標記 -->
+  <circle cx="32" cy="43" r="3" fill="#F2C53D" />
+  <circle cx="32" cy="53" r="3" fill="#F2C53D" />
+  <circle cx="32" cy="63" r="3" fill="#F2C53D" />
+  <circle cx="32" cy="73" r="3" fill="#F2C53D" />
+</svg>

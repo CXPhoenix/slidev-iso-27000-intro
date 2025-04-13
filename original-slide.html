@@ -1,0 +1,2245 @@
+<!-- Powered by Claude 3.7 sonnet and Ruta Lai's template -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ISO 27000系列介紹：資訊安全管理與稽核基礎</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Noto+Sans+TC:wght@400;500;700&family=Yomogi&family=Zen+Kurenaido&display=swap");
+
+      :root {
+        --color-1: #593c47;
+        --color-2: #f2e63d;
+        --color-3: #f2c53d;
+        --color-4: #f25c05;
+        --color-5: #f24405;
+        --blue-title: #1e40af;
+        --text-color: #334155;
+        --sidebar-width: 20%;
+        --content-width: 80%;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+        background-color: #f9f9f9;
+        color: var(--text-color);
+      }
+
+      .sidebar {
+        width: var(--sidebar-width);
+        height: 100vh;
+        background-color: var(--color-1);
+        color: white;
+        padding: 1.5rem 1rem;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        top: 0;
+      }
+
+      .sidebar-title {
+        text-align: center;
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
+        font-family: "Zen Kurenaido", sans-serif;
+      }
+
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .nav-item {
+        cursor: pointer;
+        padding: 0.75rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .nav-item:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-item.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        font-weight: bold;
+      }
+
+      .main-content {
+        width: 100%;
+        height: 100vh;
+        margin-left: var(--sidebar-width);
+        overflow: hidden;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100vh;
+        padding: 2rem 3rem;
+        display: none;
+        flex-direction: column;
+        overflow-y: auto;
+        position: relative;
+      }
+
+      .slide.active {
+        display: flex;
+      }
+
+      .slide-title {
+        font-size: 1.8rem;
+        color: var(--blue-title);
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid var(--color-3);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        position: relative;
+        font-family: "Zen Kurenaido", sans-serif;
+      }
+
+      .slide-title::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 60%;
+        height: 3px;
+        background-color: var(--color-5);
+      }
+
+      .slide-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        flex-grow: 1;
+      }
+
+      .content-box {
+        background-color: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .content-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, var(--color-3), var(--color-5));
+        border-radius: 5px 5px 0 0;
+      }
+
+      .concept-title {
+        font-size: 1.25rem;
+        color: var(--color-5);
+        margin-bottom: 1rem;
+        font-weight: bold;
+        position: relative;
+        display: inline-block;
+        font-family: "Zen Kurenaido", sans-serif;
+      }
+
+      .concept-title::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-5);
+      }
+
+      .hand-drawn-box {
+        border: 2px dashed var(--color-4);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1rem 0;
+        position: relative;
+        transform: rotate(-0.5deg);
+      }
+
+      .hand-drawn-box::before {
+        content: "📌";
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        font-size: 1.2rem;
+      }
+
+      .icon-list {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: 1.5rem 0;
+      }
+
+      .icon-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 120px;
+      }
+
+      .icon-circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: var(--color-2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+        color: var(--color-1);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+      }
+
+      .content-table th,
+      .content-table td {
+        border: 1px solid #e2e8f0;
+        padding: 0.75rem 1rem;
+        text-align: left;
+      }
+
+      .content-table th {
+        background-color: #f8fafc;
+        font-weight: bold;
+      }
+
+      .content-table tr:nth-child(even) {
+        background-color: #f8fafc;
+      }
+
+      .dialogue-box {
+        background-color: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+        position: relative;
+        margin: 1.5rem 0;
+      }
+
+      .dialogue-box::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 30px;
+        border: 10px solid transparent;
+        border-top-color: white;
+      }
+
+      .note-box {
+        padding: 1rem;
+        margin: 1rem 0;
+        background-color: #f8fafc;
+        border-left: 4px solid var(--color-3);
+        position: relative;
+      }
+
+      .note-box::before {
+        content: "📌";
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        font-size: 1.2rem;
+      }
+
+      .flow-steps {
+        display: flex;
+        justify-content: space-between;
+        margin: 2rem 0;
+        position: relative;
+      }
+
+      .flow-steps::before {
+        content: "";
+        position: absolute;
+        top: 30px;
+        left: 50px;
+        right: 50px;
+        height: 2px;
+        background-image: linear-gradient(
+          to right,
+          var(--color-3) 50%,
+          transparent 50%
+        );
+        background-size: 20px 1px;
+        background-repeat: repeat-x;
+        z-index: 0;
+      }
+
+      .flow-step {
+        width: 23%;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-number {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        background-color: white;
+        border: 2px solid var(--color-4);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: var(--color-5);
+      }
+
+      .highlight-text {
+        font-weight: bold;
+        padding: 0 2px;
+        background-image: linear-gradient(transparent 60%, var(--color-2) 40%);
+        display: inline;
+      }
+
+      .pagination {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        display: flex;
+        gap: 1rem;
+        z-index: 100;
+      }
+
+      .page-button {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--color-1);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s;
+      }
+
+      .page-button:hover {
+        transform: scale(1.1);
+      }
+
+      .page-button.disabled {
+        background-color: #cbd5e1;
+        cursor: not-allowed;
+      }
+
+      .fade {
+        animation: fadeEffect 0.5s;
+      }
+
+      @keyframes fadeEffect {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* 手繪風格元素 */
+      .hand-arrow {
+        font-size: 2rem;
+        color: var(--color-4);
+        margin: 0 1rem;
+        transform: rotate(20deg);
+      }
+
+      .marker-highlight {
+        position: relative;
+        display: inline-block;
+        z-index: 1;
+      }
+
+      .marker-highlight::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 8px;
+        bottom: 0;
+        left: 0;
+        background-color: var(--color-2);
+        opacity: 0.5;
+        z-index: -1;
+      }
+
+      /* 特定頁面樣式 */
+      #cia-triangle {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem 0;
+      }
+
+      .cia-container {
+        width: 340px;
+        height: 300px;
+        position: relative;
+        margin: 0 auto;
+      }
+
+      .cia-node {
+        position: absolute;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid var(--color-4);
+        font-weight: bold;
+        z-index: 2;
+      }
+
+      .cia-node i {
+        font-size: 1.5rem;
+        color: var(--color-4);
+        margin-bottom: 0.5rem;
+      }
+
+      .cia-confidentiality {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .cia-integrity {
+        bottom: 20px;
+        left: 25px;
+      }
+
+      .cia-availability {
+        bottom: 20px;
+        right: 25px;
+      }
+
+      .cia-lines {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .cia-line {
+        position: absolute;
+        background-color: var(--color-3);
+        height: 3px;
+      }
+
+      .cia-line-top-left {
+        width: 140px;
+        transform: rotate(60deg);
+        transform-origin: top left;
+        top: 55px;
+        left: 115px;
+      }
+
+      .cia-line-top-right {
+        width: 140px;
+        transform: rotate(-60deg);
+        transform-origin: top right;
+        top: 55px;
+        right: 115px;
+      }
+
+      .cia-line-bottom {
+        width: 140px;
+        bottom: 75px;
+        left: 100px;
+      }
+
+      .case-example {
+        background-color: #f8fafc;
+        border-radius: 12px;
+        padding: 1.5rem;
+        position: relative;
+        margin: 1.5rem 0;
+        border-left: 4px solid var(--color-4);
+      }
+
+      .case-example-title {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: var(--color-5);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      #cia-triangle {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 2rem 0;
+      }
+
+      .cia-container {
+        width: 300px;
+        height: 260px;
+        position: relative;
+        margin: 0 auto;
+      }
+
+      .triangle-svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .cia-node {
+        position: absolute;
+        width: 145px;
+        height: 145px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid var(--color-4);
+        font-weight: bold;
+        z-index: 2;
+        text-align: center;
+      }
+
+      .cia-node i {
+        font-size: 1.5rem;
+        color: var(--color-4);
+        margin-bottom: 0.5rem;
+      }
+
+      /* 位置設定 */
+      .cia-confidentiality {
+        top: -18px;
+        left: 50%;
+        padding-bottom: 0.5rem;
+      }
+
+      .cia-integrity {
+        bottom: -18px;
+        left: -2.5rem;
+      }
+
+      .cia-availability {
+        bottom: -18px;
+        right: -2.5rem;
+      }
+      .cia-explanation {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .cia-item {
+        padding: 0.5rem;
+        border-left: 3px solid var(--color-3);
+        background-color: rgba(242, 230, 60, 0.05);
+      }
+
+      .cia-item-title {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .cia-item-desc {
+        padding-left: 1.8rem;
+        font-style: italic;
+        color: var(--text-color);
+      }
+      /* 資安治理成熟度模型樣式 */
+      .maturity-model {
+        position: relative;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0.6rem;
+        margin: 1.5rem 0;
+        padding-left: 2rem;
+      }
+
+      .maturity-model::before {
+        content: "";
+        position: absolute;
+        left: 1.5rem;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        /* background-image: linear-gradient(
+          to bottom,
+          var(--color-5),
+          var(--color-3)
+        ); */
+        background-image: linear-gradient(
+          to bottom,
+          var(--color-1),
+          var(--color-2),
+          var(--color-3),
+          var(--color-4),
+          var(--color-5)
+        );
+        border-radius: 3px;
+        transform: translateX(-50%);
+      }
+
+      .maturity-level {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        min-height: 3.5rem;
+        position: relative;
+      }
+
+      .level-badge {
+        width: 2.2rem;
+        height: 2.2rem;
+        border-radius: 50%;
+        background-color: white;
+        border: 2px solid;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+        position: absolute;
+        left: -0.5rem;
+        z-index: 2;
+        margin-left: 3px;
+      }
+
+      .level-content {
+        flex: 2;
+        padding-left: 2rem;
+      }
+
+      .level-title {
+        font-weight: bold;
+      }
+
+      .level-desc {
+        font-size: 0.9rem;
+        color: var(--text-color);
+      }
+
+      .level-iso {
+        flex: 1.5;
+        font-size: 0.9rem;
+        font-style: italic;
+        padding: 0.3rem 0.7rem;
+        border-radius: 4px;
+        text-align: center;
+      }
+
+      /* 各級別特定樣式 */
+      .level-5 .level-badge {
+        border-color: var(--color-5);
+        color: var(--color-5);
+      }
+      .level-5 .level-iso {
+        background-color: rgba(242, 68, 4, 0.1);
+      }
+
+      .level-4 .level-badge {
+        border-color: var(--color-4);
+        color: var(--color-4);
+      }
+      .level-4 .level-iso {
+        background-color: rgba(242, 91, 4, 0.1);
+      }
+
+      .level-3 .level-badge {
+        border-color: var(--color-3);
+        color: var(--color-3);
+      }
+      .level-3 .level-iso {
+        background-color: rgba(242, 196, 60, 0.1);
+      }
+
+      .level-2 .level-badge {
+        border-color: var(--color-2);
+        color: darkgoldenrod;
+      }
+      .level-2 .level-iso {
+        background-color: rgba(242, 230, 60, 0.1);
+      }
+
+      .level-1 .level-badge {
+        border-color: #aaa;
+        color: #666;
+      }
+      .level-1 .level-iso {
+        background-color: rgba(150, 150, 150, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 側邊欄 -->
+    <div class="sidebar">
+      <div class="sidebar-title">
+        <div>ISO 27000系列介紹</div>
+        <div>資訊安全管理與稽核基礎</div>
+      </div>
+      <div class="sidebar-nav">
+        <div class="nav-item active" data-slide="1">
+          <span>📌</span> 課程目標
+        </div>
+        <div class="nav-item" data-slide="2">
+          <span>📌</span> 資訊安全基礎概念
+        </div>
+        <div class="nav-item" data-slide="3">
+          <span>📌</span> 為什麼需要資安管理標準？
+        </div>
+        <div class="nav-item" data-slide="4">
+          <span>📌</span> ISO 27000系列概述
+        </div>
+        <div class="nav-item" data-slide="5">
+          <span>📌</span> ISO 27001安全管理系統
+        </div>
+        <div class="nav-item" data-slide="6">
+          <span>📌</span> ISO 27002安全控制
+        </div>
+        <div class="nav-item" data-slide="7">
+          <span>📌</span> ISO 27032網路安全
+        </div>
+        <div class="nav-item" data-slide="8">
+          <span>📌</span> 資安稽核方法概述
+        </div>
+        <div class="nav-item" data-slide="9"><span>📌</span> 實際案例分析</div>
+        <div class="nav-item" data-slide="10">
+          <span>📌</span> 延伸討論與閱讀
+        </div>
+        <div class="nav-item" data-slide="11"><span>📌</span> 課程總結</div>
+      </div>
+    </div>
+
+    <!-- 主要內容 -->
+    <div class="main-content">
+      <!-- 第1頁：課程目標 -->
+      <div class="slide active" id="slide-1">
+        <h2 class="slide-title"><i class="fas fa-bullseye"></i> 課程目標</h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-star"></i> 完成本單元後，你將能夠
+            </div>
+            <div class="icon-list">
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-shield-alt"></i></div>
+                <div>理解資訊安全管理基本概念與重要性</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-sitemap"></i></div>
+                <div>認識ISO 27000系列標準架構與主要內容</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-book"></i></div>
+                <div>掌握三個核心ISO標準的要點</div>
+              </div>
+            </div>
+            <div class="icon-list">
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-search"></i></div>
+                <div>了解資安稽核的基本方法與流程</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-link"></i></div>
+                <div>連結ISO標準與CTF技術實務</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hand-drawn-box">
+            <div class="concept-title">
+              <i class="fas fa-lightbulb"></i> 為什麼學習這個主題？
+            </div>
+            <p>資訊安全管理標準能幫助我們：</p>
+            <ul style="margin-top: 0.5rem; margin-left: 1.5rem">
+              <li>建立系統性的思維方式，不只處理技術細節</li>
+              <li>從組織與管理的角度理解資安問題</li>
+              <li>為後續學習CTF技術打下管理層面的基礎</li>
+              <li>培養跨領域的資安能力，提升就業競爭力</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第2頁：資訊安全基礎概念 -->
+      <div class="slide" id="slide-2">
+        <h2 class="slide-title"><i class="fas fa-key"></i> 資訊安全基礎概念</h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-question-circle"></i> 什麼是資訊安全？
+            </div>
+            <p>
+              資訊安全是<span class="highlight-text">保護資訊及其系統</span
+              >不被未經授權的存取、使用、揭露、破壞、修改或破壞的<span
+                class="highlight-text"
+                >狀態或過程</span
+              >。
+            </p>
+
+            <div id="cia-triangle">
+              <h3
+                style="
+                  text-align: center;
+                  margin-bottom: 1.5rem;
+                  color: var(--blue-title);
+                "
+              >
+                資訊安全三要素（CIA三角）
+              </h3>
+              <div class="cia-container">
+                <!-- 三角形線條 -->
+                <svg
+                  class="triangle-svg"
+                  viewBox="0 0 300 260"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M150,20 L30,220 L270,220 Z"
+                    fill="none"
+                    stroke="#F2C53D"
+                    stroke-width="3"
+                  />
+                </svg>
+
+                <!-- 三個節點 -->
+                <div class="cia-node cia-confidentiality">
+                  <i class="fas fa-user-secret"></i>
+                  <span>機密性<br />Confidentiality</span>
+                </div>
+                <div class="cia-node cia-integrity">
+                  <i class="fas fa-check-double"></i>
+                  <span>完整性<br />Integrity</span>
+                </div>
+                <div class="cia-node cia-availability">
+                  <i class="fas fa-door-open"></i>
+                  <span>可用性<br />Availability</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-key"></i> CIA三要素完整說明
+            </div>
+            <div class="hand-drawn-box">
+              <div class="cia-explanation">
+                <div class="cia-item">
+                  <div class="cia-item-title">
+                    <i
+                      class="fas fa-user-secret"
+                      style="color: var(--color-4)"
+                    ></i>
+                    <span class="marker-highlight"
+                      >機密性 (Confidentiality)</span
+                    >
+                  </div>
+                  <div class="cia-item-desc">你知、我知，但其他人不知。</div>
+                </div>
+                <div class="cia-item">
+                  <div class="cia-item-title">
+                    <i
+                      class="fas fa-check-double"
+                      style="color: var(--color-4)"
+                    ></i>
+                    <span class="marker-highlight">完整性 (Integrity)</span>
+                  </div>
+                  <div class="cia-item-desc">
+                    一個資訊，我擁有的，跟你擁有的是一樣的；我傳給你的，跟你收到的是一樣的。
+                  </div>
+                </div>
+                <div class="cia-item">
+                  <div class="cia-item-title">
+                    <i
+                      class="fas fa-door-open"
+                      style="color: var(--color-4)"
+                    ></i>
+                    <span class="marker-highlight">可用性 (Availability)</span>
+                  </div>
+                  <div class="cia-item-desc">
+                    你要用的時候，系統正常運作；我需要資料時，隨時都能取得。
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-exclamation-triangle"></i> 資訊安全風險與威脅
+            </div>
+            <div class="icon-list">
+              <div class="icon-item">
+                <div class="icon-circle" style="background-color: #ffd1d1">
+                  <i class="fas fa-user-ninja"></i>
+                </div>
+                <div>駭客攻擊</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle" style="background-color: #ffd1d1">
+                  <i class="fas fa-file-export"></i>
+                </div>
+                <div>資料外洩</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle" style="background-color: #ffd1d1">
+                  <i class="fas fa-fish"></i>
+                </div>
+                <div>社交工程</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle" style="background-color: #ffd1d1">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div>內部威脅</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle" style="background-color: #ffd1d1">
+                  <i class="fas fa-bolt"></i>
+                </div>
+                <div>自然災害</div>
+              </div>
+            </div>
+
+            <div class="dialogue-box">
+              <div class="concept-title">
+                <i class="fas fa-comments"></i> 思考問題
+              </div>
+              <p>
+                你能想到哪些近期的資安事件？這些事件可能對組織造成什麼影響？
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 新增頁面：為什麼需要資安管理標準？ -->
+      <div class="slide" id="slide-2a">
+        <h2 class="slide-title">
+          <i class="fas fa-puzzle-piece"></i> 為什麼需要資安管理標準？
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-level-up-alt"></i> 從單點防護到系統性管理
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 1.5rem 0;
+              "
+            >
+              <div style="text-align: center; width: 30%">
+                <div
+                  style="
+                    border: 2px dashed var(--color-4);
+                    border-radius: 12px;
+                    padding: 1rem;
+                    transform: rotate(-1deg);
+                  "
+                >
+                  <i
+                    class="fas fa-shield-alt"
+                    style="font-size: 2rem; color: var(--color-4)"
+                  ></i>
+                  <p style="margin-top: 0.5rem">
+                    <strong>單點安全措施</strong>
+                  </p>
+                  <p style="font-size: 0.9rem">各自為政，缺乏整合</p>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <i
+                  class="fas fa-long-arrow-alt-right"
+                  style="font-size: 2rem; color: var(--color-3)"
+                ></i>
+              </div>
+              <div style="text-align: center; width: 30%">
+                <div
+                  style="
+                    border: 2px dashed var(--color-4);
+                    border-radius: 12px;
+                    padding: 1rem;
+                    transform: rotate(1deg);
+                  "
+                >
+                  <i
+                    class="fas fa-cogs"
+                    style="font-size: 2rem; color: var(--color-4)"
+                  ></i>
+                  <p style="margin-top: 0.5rem"><strong>流程與程序</strong></p>
+                  <p style="font-size: 0.9rem">有序但不完整</p>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <i
+                  class="fas fa-long-arrow-alt-right"
+                  style="font-size: 2rem; color: var(--color-3)"
+                ></i>
+              </div>
+              <div style="text-align: center; width: 30%">
+                <div
+                  style="
+                    border: 2px dashed var(--color-4);
+                    border-radius: 12px;
+                    padding: 1rem;
+                    transform: rotate(-1deg);
+                  "
+                >
+                  <i
+                    class="fas fa-sitemap"
+                    style="font-size: 2rem; color: var(--color-4)"
+                  ></i>
+                  <p style="margin-top: 0.5rem"><strong>管理系統</strong></p>
+                  <p style="font-size: 0.9rem">全面且持續改進</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 新增資安治理成熟度內容 -->
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-chart-line"></i> 資安治理成熟度模型
+            </div>
+
+            <div class="maturity-model">
+              <div class="maturity-level level-5">
+                <div class="level-badge">5</div>
+                <div class="level-content">
+                  <div class="level-title">最佳化級</div>
+                  <div class="level-desc">持續改進，主動調適</div>
+                </div>
+                <div class="level-iso">ISO 27001持續改進階段</div>
+              </div>
+
+              <div class="maturity-level level-4">
+                <div class="level-badge">4</div>
+                <div class="level-content">
+                  <div class="level-title">量化管理級</div>
+                  <div class="level-desc">量化管理與分析</div>
+                </div>
+                <div class="level-iso">ISO 27004稽核與量測</div>
+              </div>
+
+              <div class="maturity-level level-3">
+                <div class="level-badge">3</div>
+                <div class="level-content">
+                  <div class="level-title">規則級</div>
+                  <div class="level-desc">標準流程與政策</div>
+                </div>
+                <div class="level-iso">ISO 27001基本實施</div>
+              </div>
+
+              <div class="maturity-level level-2">
+                <div class="level-badge">2</div>
+                <div class="level-content">
+                  <div class="level-title">管理級</div>
+                  <div class="level-desc">可重複但未標準化</div>
+                </div>
+                <div class="level-iso">部分ISO 27002控制措施</div>
+              </div>
+
+              <div class="maturity-level level-1">
+                <div class="level-badge">1</div>
+                <div class="level-content">
+                  <div class="level-title">初始級</div>
+                  <div class="level-desc">臨時性、反應式</div>
+                </div>
+                <div class="level-iso">無ISO標準實施</div>
+              </div>
+            </div>
+
+            <div class="note-box" style="margin-top: 1rem">
+              <p>
+                <strong>ISO的角色：</strong>ISO 27000系列標準幫助組織從<span
+                  class="marker-highlight"
+                  >初始級</span
+                >朝向<span class="marker-highlight">最佳化級</span
+                >發展，提供完整框架與持續改進機制。
+              </p>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-exclamation-circle"></i> 單點安全措施的問題
+            </div>
+            <div class="hand-drawn-box">
+              <div class="icon-list">
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-random"></i>
+                  </div>
+                  <div>
+                    <strong>零散性</strong><br />各部門各自實施，缺乏整合
+                  </div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <div><strong>難以衡量</strong><br />缺乏指標評估成效</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-user-slash"></i>
+                  </div>
+                  <div><strong>職責不明</strong><br />責任劃分不清</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
+                  <div>
+                    <strong>缺乏持續性</strong><br />一次性實施後不再更新
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-example">
+            <div class="case-example-title">
+              <i class="fas fa-building"></i> 案例思考
+            </div>
+            <p>想像一家公司：</p>
+            <ul style="margin-top: 0.5rem; margin-left: 1.5rem">
+              <li>IT部門安裝了防火牆和防毒軟體</li>
+              <li>人資部門制定了密碼政策</li>
+              <li>行政部門負責監視攝影機和門禁</li>
+            </ul>
+            <p style="margin-top: 0.5rem">
+              <span class="marker-highlight">問題在於</span
+              >：這些措施彼此之間沒有協調，缺乏整體規劃和持續改進機制。
+            </p>
+            <p style="margin-top: 0.5rem">
+              這就是為什麼我們需要<span class="marker-highlight"
+                >標準化的資安管理系統</span
+              >。
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- 新增頁面：為什麼需要資安管理標準？
+      <div class="slide" id="slide-2a">
+        <h2 class="slide-title">
+          <i class="fas fa-puzzle-piece"></i> 為什麼需要資安管理標準？
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-level-up-alt"></i> 從單點防護到系統性管理
+            </div>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 1.5rem 0;
+              "
+            >
+              <div style="text-align: center; width: 30%">
+                <div
+                  style="
+                    border: 2px dashed var(--color-4);
+                    border-radius: 12px;
+                    padding: 1rem;
+                    transform: rotate(-1deg);
+                  "
+                >
+                  <i
+                    class="fas fa-shield-alt"
+                    style="font-size: 2rem; color: var(--color-4)"
+                  ></i>
+                  <p style="margin-top: 0.5rem">
+                    <strong>單點安全措施</strong>
+                  </p>
+                  <p style="font-size: 0.9rem">各自為政，缺乏整合</p>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <i
+                  class="fas fa-long-arrow-alt-right"
+                  style="font-size: 2rem; color: var(--color-3)"
+                ></i>
+              </div>
+              <div style="text-align: center; width: 30%">
+                <div
+                  style="
+                    border: 2px dashed var(--color-4);
+                    border-radius: 12px;
+                    padding: 1rem;
+                    transform: rotate(1deg);
+                  "
+                >
+                  <i
+                    class="fas fa-cogs"
+                    style="font-size: 2rem; color: var(--color-4)"
+                  ></i>
+                  <p style="margin-top: 0.5rem"><strong>流程與程序</strong></p>
+                  <p style="font-size: 0.9rem">有序但不完整</p>
+                </div>
+              </div>
+              <div style="text-align: center">
+                <i
+                  class="fas fa-long-arrow-alt-right"
+                  style="font-size: 2rem; color: var(--color-3)"
+                ></i>
+              </div>
+              <div style="text-align: center; width: 30%">
+                <div
+                  style="
+                    border: 2px dashed var(--color-4);
+                    border-radius: 12px;
+                    padding: 1rem;
+                    transform: rotate(-1deg);
+                  "
+                >
+                  <i
+                    class="fas fa-sitemap"
+                    style="font-size: 2rem; color: var(--color-4)"
+                  ></i>
+                  <p style="margin-top: 0.5rem"><strong>管理系統</strong></p>
+                  <p style="font-size: 0.9rem">全面且持續改進</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-exclamation-circle"></i> 單點安全措施的問題
+            </div>
+            <div class="hand-drawn-box">
+              <div class="icon-list">
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-random"></i>
+                  </div>
+                  <div>
+                    <strong>零散性</strong><br />各部門各自實施，缺乏整合
+                  </div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <div><strong>難以衡量</strong><br />缺乏指標評估成效</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-user-slash"></i>
+                  </div>
+                  <div><strong>職責不明</strong><br />責任劃分不清</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-sync-alt"></i>
+                  </div>
+                  <div>
+                    <strong>缺乏持續性</strong><br />一次性實施後不再更新
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-example">
+            <div class="case-example-title">
+              <i class="fas fa-building"></i> 案例思考
+            </div>
+            <p>想像一家公司：</p>
+            <ul style="margin-top: 0.5rem; margin-left: 1.5rem">
+              <li>IT部門安裝了防火牆和防毒軟體</li>
+              <li>人資部門制定了密碼政策</li>
+              <li>行政部門負責監視攝影機和門禁</li>
+            </ul>
+            <p style="margin-top: 0.5rem">
+              <span class="marker-highlight">問題在於</span
+              >：這些措施彼此之間沒有協調，缺乏整體規劃和持續改進機制。
+            </p>
+            <p style="margin-top: 0.5rem">
+              這就是為什麼我們需要<span class="marker-highlight"
+                >標準化的資安管理系統</span
+              >。
+            </p>
+          </div>
+
+          <div class="note-box">
+            <p>
+              <strong>關鍵思考：</strong>國際標準（如ISO
+              27000系列）提供了全面的框架，協助組織系統性地實施、管理和改進資訊安全，而非僅依賴單一技術解決方案。
+            </p>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- 第3頁：ISO 27000系列概述 -->
+      <div class="slide" id="slide-3">
+        <h2 class="slide-title">
+          <i class="fas fa-book"></i> ISO 27000系列概述
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-building"></i> ISO是什麼？
+            </div>
+            <p>
+              國際標準化組織（International Organization for Standardization,
+              ISO）是一個<span class="highlight-text">非政府組織</span
+              >，負責制定國際標準，促進全球貿易和合作。
+            </p>
+
+            <div class="concept-title" style="margin-top: 1.5rem">
+              <i class="fas fa-book-open"></i> ISO 27000系列簡介
+            </div>
+            <p>
+              ISO 27000系列是專門針對<span class="highlight-text"
+                >資訊安全管理系統</span
+              >（ISMS）所制定的國際標準系列，提供組織建立、實施、維護和持續改進資訊安全管理的架構。
+            </p>
+
+            <div class="hand-drawn-box" style="margin-top: 1.5rem">
+              <table class="content-table">
+                <thead>
+                  <tr>
+                    <th>標準編號</th>
+                    <th>標準名稱</th>
+                    <th>主要內容</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>ISO 27000</strong></td>
+                    <td>概述與詞彙</td>
+                    <td>定義ISMS相關術語與基本概念</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ISO 27001</strong></td>
+                    <td>要求事項</td>
+                    <td>規定ISMS的要求，可進行驗證</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ISO 27002</strong></td>
+                    <td>實作指引</td>
+                    <td>提供安全控制措施的最佳實務</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ISO 27005</strong></td>
+                    <td>風險管理</td>
+                    <td>提供資訊安全風險管理指引</td>
+                  </tr>
+                  <tr>
+                    <td><strong>ISO 27032</strong></td>
+                    <td>網路安全</td>
+                    <td>專注於網際網路安全指引</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <p>
+              <strong>重要提示：</strong>在本課程中，我們將重點關注ISO
+              27001、ISO 27002及ISO
+              27032三個標準，因為它們與CTF技術實務的關聯性最高。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第4頁：ISO 27001安全管理系統 -->
+      <div class="slide" id="slide-4">
+        <h2 class="slide-title">
+          <i class="fas fa-shield-alt"></i> ISO 27001安全管理系統
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-star"></i> ISO 27001核心概念
+            </div>
+            <p>
+              ISO 27001是ISO 27000系列的<span class="highlight-text"
+                >核心標準</span
+              >，規定了建立、實施、維護和持續改進資訊安全管理系統（ISMS）的要求。
+            </p>
+
+            <div class="icon-list" style="margin-top: 1rem">
+              <div class="icon-item">
+                <div class="icon-circle">
+                  <i class="fas fa-certificate"></i>
+                </div>
+                <div>唯一可認證的標準</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-cogs"></i></div>
+                <div>採用「過程方法」</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-sync-alt"></i></div>
+                <div>基於PDCA循環模型</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div>以風險為基礎</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-sync-alt"></i> PDCA循環模型
+            </div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <div class="step-number">P</div>
+                <div>
+                  <strong>計劃 (Plan)</strong>
+                  <p>確立ISMS政策、目標、過程和程序</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="step-number">D</div>
+                <div>
+                  <strong>執行 (Do)</strong>
+                  <p>實施和運行ISMS政策、控制、過程</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="step-number">C</div>
+                <div>
+                  <strong>檢查 (Check)</strong>
+                  <p>評估並測量過程績效，報告結果</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="step-number">A</div>
+                <div>
+                  <strong>行動 (Act)</strong>
+                  <p>採取改進行動，持續提升ISMS</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-example">
+            <div class="case-example-title">
+              <i class="fas fa-shopping-cart"></i> 案例討論
+            </div>
+            <p>某電子商務公司如何應用ISO 27001來保護客戶資料？考慮以下方面：</p>
+            <ul style="margin-top: 0.5rem; margin-left: 1.5rem">
+              <li>如何規劃資安管理體系？</li>
+              <li>需要實施哪些安全控制？</li>
+              <li>如何評估資安措施的有效性？</li>
+              <li>發現問題後如何持續改進？</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第5頁：ISO 27002安全控制 -->
+      <div class="slide" id="slide-5">
+        <h2 class="slide-title">
+          <i class="fas fa-lock"></i> ISO 27002安全控制
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-info-circle"></i> ISO 27002概述
+            </div>
+            <p>
+              ISO 27002提供了<span class="highlight-text">資訊安全控制措施</span
+              >的實施指引，是ISO 27001附錄A控制項的詳細說明。
+            </p>
+
+            <div class="icon-list" style="margin-top: 1rem">
+              <div class="icon-item">
+                <div class="icon-circle">
+                  <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div>提供安全控制措施的最佳實務</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle">
+                  <i class="fas fa-hand-pointer"></i>
+                </div>
+                <div>協助選擇適當的安全控制措施</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-map-signs"></i></div>
+                <div>非強制性，但提供實用指導</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-th-large"></i> ISO 27002控制領域
+            </div>
+            <p>ISO 27002:2022版本包含4個主要類別，涵蓋93個控制項：</p>
+
+            <div class="hand-drawn-box">
+              <div class="icon-list">
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #d1ffd1">
+                    <i class="fas fa-sitemap"></i>
+                  </div>
+                  <div>
+                    <strong>組織控制</strong><br />安全政策、角色與責任等
+                  </div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #d1ffff">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <div>
+                    <strong>人員控制</strong><br />安全意識與培訓、行為準則等
+                  </div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1ff">
+                    <i class="fas fa-building"></i>
+                  </div>
+                  <div>
+                    <strong>物理控制</strong><br />物理存取控制、設備安全等
+                  </div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffffd1">
+                    <i class="fas fa-laptop-code"></i>
+                  </div>
+                  <div>
+                    <strong>技術控制</strong><br />存取控制、密碼學、網路安全等
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <div class="concept-title">
+              <i class="fas fa-link"></i> 與CTF關聯的控制項
+            </div>
+            <ul style="margin-left: 1.5rem">
+              <li>
+                <strong>存取控制</strong> - 與OWASP A01:2021（<span
+                  class="marker-highlight"
+                  >權限控制失效</span
+                >）相關
+              </li>
+              <li>
+                <strong>應用程式安全</strong> - 與OWASP A04:2021（<span
+                  class="marker-highlight"
+                  >不安全設計</span
+                >）相關
+              </li>
+              <li>
+                <strong>系統與網路安全</strong> - 與OWASP A03:2021（<span
+                  class="marker-highlight"
+                  >注入攻擊</span
+                >）相關
+              </li>
+            </ul>
+          </div>
+
+          <div class="dialogue-box">
+            <div class="concept-title">
+              <i class="fas fa-comments"></i> 小組活動
+            </div>
+            <p>
+              請討論在日常生活中，你可能已經遇到的資訊安全控制措施有哪些？考慮學校、購物網站、銀行App等場景。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第6頁：ISO 27032網路安全 -->
+      <div class="slide" id="slide-6">
+        <h2 class="slide-title">
+          <i class="fas fa-globe"></i> ISO 27032網路安全
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-info-circle"></i> ISO 27032概述
+            </div>
+            <p>
+              ISO 27032專注於<span class="highlight-text">網路安全</span
+              >（Cybersecurity），提供改善網路空間安全狀態的指引。
+            </p>
+
+            <div class="icon-list" style="margin-top: 1rem">
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-globe-asia"></i></div>
+                <div>專注於網際網路環境的安全</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle">
+                  <i class="fas fa-project-diagram"></i>
+                </div>
+                <div>處理不同安全領域的交叉部分</div>
+              </div>
+              <div class="icon-item">
+                <div class="icon-circle"><i class="fas fa-handshake"></i></div>
+                <div>提供與利害關係者協作的架構</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-shield-virus"></i> ISO 27032主要內容
+            </div>
+
+            <div class="hand-drawn-box">
+              <h3 style="margin-bottom: 1rem; color: var(--color-4)">
+                <i class="fas fa-bug"></i> 網路攻擊技術與常見威脅
+              </h3>
+              <div class="icon-list">
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-user-secret"></i>
+                  </div>
+                  <div>社交工程</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-user-ninja"></i>
+                  </div>
+                  <div>駭客入侵</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-virus"></i>
+                  </div>
+                  <div>惡意軟體</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle" style="background-color: #ffd1d1">
+                    <i class="fas fa-comment-dollar"></i>
+                  </div>
+                  <div>網路詐欺</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hand-drawn-box">
+              <h3 style="margin-bottom: 1rem; color: var(--color-4)">
+                <i class="fas fa-shield-alt"></i> 網路安全控制與防護措施
+              </h3>
+              <div style="display: flex; gap: 2rem">
+                <div style="flex: 1">
+                  <div
+                    style="
+                      font-weight: bold;
+                      margin-bottom: 0.5rem;
+                      color: var(--color-5);
+                    "
+                  >
+                    <i class="fas fa-laptop-code"></i> 技術層面
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>防火牆</li>
+                    <li>入侵偵測系統</li>
+                    <li>加密技術</li>
+                    <li>存取控制</li>
+                  </ul>
+                </div>
+                <div style="flex: 1">
+                  <div
+                    style="
+                      font-weight: bold;
+                      margin-bottom: 0.5rem;
+                      color: var(--color-5);
+                    "
+                  >
+                    <i class="fas fa-clipboard-list"></i> 程序層面
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>安全政策</li>
+                    <li>事件處理流程</li>
+                    <li>業務持續計畫</li>
+                    <li>稽核機制</li>
+                  </ul>
+                </div>
+                <div style="flex: 1">
+                  <div
+                    style="
+                      font-weight: bold;
+                      margin-bottom: 0.5rem;
+                      color: var(--color-5);
+                    "
+                  >
+                    <i class="fas fa-user-graduate"></i> 人員層面
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>安全意識</li>
+                    <li>培訓與教育</li>
+                    <li>責任與權限</li>
+                    <li>行為規範</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <div class="concept-title">
+              <i class="fas fa-link"></i> ISO 27032與CTF的關聯
+            </div>
+            <ul style="margin-left: 1.5rem">
+              <li>了解攻擊技術有助於進行CTF解題</li>
+              <li>網路安全控制措施是CTF題目的常見情境</li>
+              <li>安全弱點分析是ISO 27032與CTF的共同關注點</li>
+            </ul>
+          </div>
+
+          <div class="case-example">
+            <div class="case-example-title">
+              <i class="fas fa-database"></i> 案例分析
+            </div>
+            <p>
+              某公司網站遭受SQL注入攻擊，從ISO
+              27032的角度，應如何預防？思考技術、程序和人員三個層面。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第7頁：資安稽核方法概述 -->
+      <div class="slide" id="slide-7">
+        <h2 class="slide-title">
+          <i class="fas fa-search"></i> 資安稽核方法概述
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-question-circle"></i> 什麼是資安稽核？
+            </div>
+            <p>
+              資安稽核是<span class="highlight-text">系統性評估</span
+              >組織資訊安全控制措施的過程，目的是確認這些措施是否有效實施、是否符合標準要求，並找出可能的弱點與改進空間。
+            </p>
+
+            <div class="hand-drawn-box" style="margin-top: 1.5rem">
+              <div class="concept-title">
+                <i class="fas fa-list-ul"></i> 資安稽核的類型
+              </div>
+              <div class="icon-list">
+                <div class="icon-item">
+                  <div class="icon-circle"><i class="fas fa-user-tie"></i></div>
+                  <div><strong>內部稽核</strong><br />由組織內部人員執行</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle">
+                    <i class="fas fa-user-check"></i>
+                  </div>
+                  <div><strong>外部稽核</strong><br />由第三方獨立機構執行</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle">
+                    <i class="fas fa-clipboard-check"></i>
+                  </div>
+                  <div>
+                    <strong>合規性稽核</strong><br />檢查是否符合標準或法規
+                  </div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle"><i class="fas fa-tools"></i></div>
+                  <div>
+                    <strong>技術性稽核</strong><br />針對技術控制措施評估
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-tasks"></i> 資安稽核流程
+            </div>
+            <div class="flow-steps">
+              <div class="flow-step">
+                <div class="step-number">1</div>
+                <div>
+                  <strong>稽核規劃</strong>
+                  <p>確定目標與範圍<br />準備稽核計畫與檢查表</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="step-number">2</div>
+                <div>
+                  <strong>稽核執行</strong>
+                  <p>收集證據<br />記錄發現項目</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="step-number">3</div>
+                <div>
+                  <strong>稽核報告</strong>
+                  <p>分析發現項目<br />評估風險與提出建議</p>
+                </div>
+              </div>
+              <div class="flow-step">
+                <div class="step-number">4</div>
+                <div>
+                  <strong>後續追蹤</strong>
+                  <p>改善措施實施<br />驗證改善效果</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <div class="concept-title">
+              <i class="fas fa-link"></i> 資安稽核與CTF的關聯
+            </div>
+            <p>資安稽核與CTF解題有許多相似之處：</p>
+            <ul style="margin-left: 1.5rem">
+              <li>
+                都需要<span class="marker-highlight">系統性的方法</span
+                >來識別弱點
+              </li>
+              <li>
+                都需要依據<span class="marker-highlight">標準或最佳實務</span
+                >進行評估
+              </li>
+              <li>
+                都需要撰寫清晰的<span class="marker-highlight">報告</span
+                >說明發現項目
+              </li>
+            </ul>
+            <p style="margin-top: 0.5rem">
+              <strong>未來課程連結：</strong
+              >我們將學習如何將CTF解題過程轉化為專業的資安稽核報告。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第8頁：實際案例分析 -->
+      <div class="slide" id="slide-8">
+        <h2 class="slide-title">
+          <i class="fas fa-file-alt"></i> 實際案例分析
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-database"></i> 案例一：個人資料外洩事件
+            </div>
+            <p>
+              <strong>情境：</strong
+              >某購物網站因資料庫安全控制不足，導致大量客戶資料外洩。
+            </p>
+
+            <div style="margin-top: 1rem">
+              <div style="font-weight: bold; color: var(--color-5)">
+                <i class="fas fa-search"></i> 從ISO角度分析
+              </div>
+              <div style="display: flex; margin-top: 0.5rem; gap: 1.5rem">
+                <div style="flex: 1">
+                  <div style="font-weight: bold; margin-bottom: 0.5rem">
+                    <i class="fas fa-check-circle"></i> ISO 27001
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>缺乏適當的風險評估</li>
+                    <li>未實施必要的控制措施</li>
+                    <li>監控機制不足</li>
+                  </ul>
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: bold; margin-bottom: 0.5rem">
+                    <i class="fas fa-check-circle"></i> ISO 27002
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>未實施適當的存取控制</li>
+                    <li>密碼保護措施不足</li>
+                    <li>資料加密缺失</li>
+                  </ul>
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: bold; margin-bottom: 0.5rem">
+                    <i class="fas fa-check-circle"></i> ISO 27032
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>未能及時偵測網路入侵</li>
+                    <li>缺乏應變計畫</li>
+                    <li>未定期進行滲透測試</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1rem">
+              <div style="font-weight: bold; color: var(--color-5)">
+                <i class="fas fa-laptop-code"></i> CTF技術關聯
+              </div>
+              <ul style="margin-left: 1.5rem">
+                <li>可能涉及SQL注入（A03:2021）</li>
+                <li>可能涉及權限控制失效（A01:2021）</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-hospital"></i> 案例二：勒索軟體攻擊
+            </div>
+            <p>
+              <strong>情境：</strong>某醫院系統遭勒索軟體攻擊，導致系統癱瘓。
+            </p>
+
+            <div style="margin-top: 1rem">
+              <div style="font-weight: bold; color: var(--color-5)">
+                <i class="fas fa-search"></i> 從ISO角度分析
+              </div>
+              <div style="display: flex; margin-top: 0.5rem; gap: 1.5rem">
+                <div style="flex: 1">
+                  <div style="font-weight: bold; margin-bottom: 0.5rem">
+                    <i class="fas fa-check-circle"></i> ISO 27001
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>缺乏完善的業務持續性計畫</li>
+                    <li>事件處理程序不足</li>
+                  </ul>
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: bold; margin-bottom: 0.5rem">
+                    <i class="fas fa-check-circle"></i> ISO 27002
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>備份策略不足</li>
+                    <li>安全更新管理不當</li>
+                  </ul>
+                </div>
+                <div style="flex: 1">
+                  <div style="font-weight: bold; margin-bottom: 0.5rem">
+                    <i class="fas fa-check-circle"></i> ISO 27032
+                  </div>
+                  <ul style="margin-left: 1.5rem">
+                    <li>員工安全意識不足</li>
+                    <li>易受社交工程攻擊</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1rem">
+              <div style="font-weight: bold; color: var(--color-5)">
+                <i class="fas fa-laptop-code"></i> CTF技術關聯
+              </div>
+              <ul style="margin-left: 1.5rem">
+                <li>可能涉及不安全設計（A04:2021）</li>
+                <li>可能涉及權限提升攻擊</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="dialogue-box">
+            <div class="concept-title">
+              <i class="fas fa-comments"></i> 小組討論
+            </div>
+            <p>請分析一則近期的資安事件，從ISO標準角度提出可能的防範措施。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第9頁：延伸討論與閱讀 -->
+      <div class="slide" id="slide-9">
+        <h2 class="slide-title">
+          <i class="fas fa-book-reader"></i> 延伸討論與閱讀
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-comments"></i> 延伸討論：資安標準與實務的關係
+            </div>
+            <p>
+              資訊安全管理標準提供了框架，但實際執行時常需要根據組織特性進行調整。討論以下問題：
+            </p>
+
+            <div class="hand-drawn-box">
+              <ol style="margin-left: 1.5rem">
+                <li>為什麼不同組織需要不同的安全控制措施？</li>
+                <li>標準化的優點與限制是什麼？</li>
+                <li>台灣企業實施ISO 27001可能面臨哪些挑戰？</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-balance-scale"></i> 延伸思考：技術與管理的平衡
+            </div>
+
+            <div class="hand-drawn-box">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin-bottom: 1.5rem;
+                "
+              >
+                <div style="text-align: center; width: 40%">
+                  <div class="icon-circle" style="margin: 0 auto">
+                    <i class="fas fa-laptop-code"></i>
+                  </div>
+                  <div><strong>技術面</strong></div>
+                </div>
+                <div class="hand-arrow">
+                  <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div style="text-align: center; width: 40%">
+                  <div class="icon-circle" style="margin: 0 auto">
+                    <i class="fas fa-tasks"></i>
+                  </div>
+                  <div><strong>管理面</strong></div>
+                </div>
+              </div>
+
+              <ol style="margin-left: 1.5rem">
+                <li>若只有技術防護但缺乏管理流程，可能產生哪些問題？</li>
+                <li>若只有管理制度但缺乏技術實作，又會有哪些風險？</li>
+                <li>在資安防護中，如何取得技術與管理的最佳平衡？</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <p>
+              <strong>思考提示：</strong
+              >在我們接下來的CTF技術實務課程中，將著重於技術面的學習，但需要記住，真實世界的資安防護必須結合技術與管理兩個面向才能有效。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 第10頁：課程總結 -->
+      <div class="slide" id="slide-10">
+        <h2 class="slide-title">
+          <i class="fas fa-clipboard-check"></i> 課程總結
+        </h2>
+        <div class="slide-content">
+          <div class="content-box">
+            <div class="concept-title">
+              <i class="fas fa-star"></i> 本週重點回顧
+            </div>
+
+            <div class="hand-drawn-box">
+              <div class="icon-list">
+                <div class="icon-item">
+                  <div class="icon-circle">
+                    <i class="fas fa-shield-alt"></i>
+                  </div>
+                  <div>資訊安全的基本概念與CIA三角</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle"><i class="fas fa-sitemap"></i></div>
+                  <div>ISO 27000系列標準的架構與主要內容</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle"><i class="fas fa-key"></i></div>
+                  <div>ISO 27001安全管理系統的核心要求</div>
+                </div>
+              </div>
+
+              <div class="icon-list" style="margin-top: 1.5rem">
+                <div class="icon-item">
+                  <div class="icon-circle"><i class="fas fa-list-alt"></i></div>
+                  <div>ISO 27002安全控制措施的分類與實施</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle"><i class="fas fa-globe"></i></div>
+                  <div>ISO 27032網路安全的重點內容</div>
+                </div>
+                <div class="icon-item">
+                  <div class="icon-circle"><i class="fas fa-search"></i></div>
+                  <div>資安稽核的類型、流程與方法</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="note-box">
+            <p>
+              <strong>整合與應用：</strong
+              >本週課程介紹的ISO標準與資安管理框架，將在後續的CTF技術實務課程中持續作為重要的參考依據。我們將實際操作安全弱點分析工具與技術，同時結合ISO標準的架構來整理與表達發現的問題。
+            </p>
+          </div>
+
+          <div class="dialogue-box">
+            <div class="concept-title">
+              <i class="fas fa-question-circle"></i> 思考問題
+            </div>
+            <p>
+              你認為資訊安全管理最重要的目標是什麼？在實施資訊安全控制措施時，應該優先考慮什麼因素？
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 導覽按鈕 -->
+      <div class="pagination">
+        <div class="page-button prev disabled">
+          <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="page-button next"><i class="fas fa-chevron-right"></i></div>
+      </div>
+    </div>
+
+    <script>
+      // 頁面切換邏輯
+      let currentSlide = 1;
+      const totalSlides = document.querySelectorAll(".slide").length;
+
+      function showSlide(slideNumber) {
+        // 隱藏所有投影片
+        document.querySelectorAll(".slide").forEach((slide) => {
+          slide.classList.remove("active");
+          slide.classList.remove("fade");
+        });
+
+        // 顯示當前投影片
+        let slideId = `slide-${slideNumber}`;
+        // 處理新增的頁面編號
+        if (slideNumber > 2) {
+          // 將頁面編號調整為實際DOM中的ID
+          const adjustedSlideIds = {
+            3: "slide-2a", // 新增頁面
+            4: "slide-3",
+            5: "slide-4",
+            6: "slide-5",
+            7: "slide-6",
+            8: "slide-7",
+            9: "slide-8",
+            10: "slide-9",
+            11: "slide-10",
+          };
+          slideId = adjustedSlideIds[slideNumber] || slideId;
+        }
+
+        const currentSlideElement = document.getElementById(slideId);
+        if (currentSlideElement) {
+          currentSlideElement.classList.add("active");
+          currentSlideElement.classList.add("fade");
+        }
+
+        // 更新側邊欄高亮
+        document.querySelectorAll(".nav-item").forEach((item) => {
+          item.classList.remove("active");
+        });
+        document
+          .querySelector(`.nav-item[data-slide="${slideNumber}"]`)
+          .classList.add("active");
+
+        // 更新導覽按鈕狀態
+        const prevButton = document.querySelector(".page-button.prev");
+        const nextButton = document.querySelector(".page-button.next");
+
+        prevButton.classList.toggle("disabled", slideNumber === 1);
+        nextButton.classList.toggle("disabled", slideNumber === totalSlides);
+
+        currentSlide = slideNumber;
+      }
+
+      // 監聽側邊欄點擊
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          const slideNumber = parseInt(item.getAttribute("data-slide"));
+          showSlide(slideNumber);
+        });
+      });
+
+      // 監聽導覽按鈕點擊
+      document
+        .querySelector(".page-button.prev")
+        .addEventListener("click", () => {
+          if (currentSlide > 1) {
+            showSlide(currentSlide - 1);
+          }
+        });
+
+      document
+        .querySelector(".page-button.next")
+        .addEventListener("click", () => {
+          if (currentSlide < totalSlides) {
+            showSlide(currentSlide + 1);
+          }
+        });
+
+      // 監聽鍵盤事件
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft" && currentSlide > 1) {
+          showSlide(currentSlide - 1);
+        } else if (e.key === "ArrowRight" && currentSlide < totalSlides) {
+          showSlide(currentSlide + 1);
+        }
+      });
+    </script>
+  </body>
+</html>

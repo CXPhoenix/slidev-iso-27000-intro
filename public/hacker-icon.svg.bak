@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格駭客帽子和面具 -->
+  <path d="M25,50 C25,35 35,25 50,25 C65,25 75,35 75,50 C75,55 73,59 70,62 L70,70 C70,75 65,80 60,80 L40,80 C35,80 30,75 30,70 L30,62 C27,59 25,55 25,50 Z" fill="#323232" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.2));" />
+  
+  <!-- 帽緣 -->
+  <path d="M25,50 C25,45 30,45 35,48 C45,52 65,52 75,48 C80,46 75,42 75,50" stroke="#593c47" stroke-width="2" />
+  
+  <!-- 眼睛 -->
+  <path d="M35,55 C38,53 42,53 45,55" stroke="#F2C53D" stroke-width="2" />
+  <path d="M55,55 C58,53 62,53 65,55" stroke="#F2C53D" stroke-width="2" />
+  
+  <!-- 鍵盤 -->
+  <rect x="35" y="85" width="30" height="5" rx="2" ry="2" fill="#F2E63D" />
+  <path d="M38,85 L38,83 M43,85 L43,83 M48,85 L48,83 M53,85 L53,83 M58,85 L58,83" stroke="#593c47" stroke-width="1" />
+  
+  <!-- 鼠標懸停/滑鼠程式碼 -->
+  <path d="M15,30 L25,35 M15,40 L25,38 M15,50 L25,45" stroke="#f25c05" stroke-width="1.5" />
+  <path d="M85,30 L75,35 M85,40 L75,38 M85,50 L75,45" stroke="#f25c05" stroke-width="1.5" />
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" fill="none">
+  <!-- 手繪圓形路徑 -->
+  <ellipse cx="250" cy="150" rx="230" ry="130" stroke="#F2C53D" stroke-width="5" stroke-dasharray="15 8" stroke-linecap="round" style="filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.1));" />
+  
+  <!-- 循環箭頭 -->
+  <path d="M450,150 C440,200 400,240 340,260" stroke="#f25c05" stroke-width="5" stroke-linecap="round" />
+  <path d="M340,260 C280,280 210,280 160,260" stroke="#f25c05" stroke-width="5" stroke-linecap="round" />
+  <path d="M160,260 C100,240 60,200 50,150" stroke="#f25c05" stroke-width="5" stroke-linecap="round" />
+  <path d="M50,150 C60,100 100,60 160,40" stroke="#f25c05" stroke-width="5" stroke-linecap="round" />
+  <path d="M160,40 C220,20 280,20 340,40" stroke="#f25c05" stroke-width="5" stroke-linecap="round" />
+  <path d="M340,40 C400,60 440,100 450,150" stroke="#f25c05" stroke-width="5" stroke-linecap="round" />
+  
+  <!-- 箭頭頭部 -->
+  <path d="M455,130 L450,150 L435,140" stroke="#f25c05" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="#593c47" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <!-- 手繪風格書籍 -->
+  <path d="M30,25 C28,24 26,25 25,27 L25,75 C25,78 27,79 29,79 L75,79 C76,79 77,78 78,76 L78,31 C78,28 77,26 75,26 L35,26 C33,26 31,26 30,25 Z" fill="#F2E63D" style="filter: drop-shadow(3px 3px 4px rgba(0,0,0,0.2));" />
+  <!-- 書頁 -->
+  <path d="M32,30 L74,30 M32,40 L74,40 M32,50 L74,50 M32,60 L74,60 M32,70 L60,70" fill="none" />
+  <!-- 書籤 -->
+  <path d="M67,26 L67,50 L72,45 L77,50 L77,26" fill="#f25c05" stroke="#593c47" />
+</svg>

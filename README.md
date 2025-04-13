@@ -2,8 +2,11 @@
 
 >[!NOTE]
 > Author: CXPh03n1x@FHSH
+> 
 > Updated: 2025-04-14
+> 
 > License: CC BY-NC-SA 4.0
+> 
 
 
 這是一個使用 [Slidev](https://github.com/slidevjs/slidev) 建立的簡報專案，專注於介紹 ISO 27000 系列標準，以及資訊安全管理與稽核的基礎知識。適合用於高中資安 CTF 技術實務教學。

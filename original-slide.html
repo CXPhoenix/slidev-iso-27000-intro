@@ -41,7 +41,7 @@
 
       .sidebar {
         width: var(--sidebar-width);
-        height: 100vh;
+        height: 100dvh;
         background-color: var(--color-1);
         color: white;
         padding: 1.5rem 1rem;
@@ -50,6 +50,7 @@
         position: fixed;
         left: 0;
         top: 0;
+        overflow-y: auto;
       }
 
       .sidebar-title {
@@ -59,6 +60,26 @@
         padding-bottom: 1rem;
         border-bottom: 1px dashed rgba(255, 255, 255, 0.5);
         font-family: "Zen Kurenaido", sans-serif;
+      }
+
+      .sidebar-title .licence {
+        font-size: 0.8rem;
+        color: #888;
+        padding-top: -0.5rem;
+      }
+
+      .sidebar-powered-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: auto;
+      }
+
+      .sidebar-powered-block .powered-by {
+        font-size: 0.8rem;
+        color: #aaa;
+        text-align: justify;
+        line-height: 1.5rem;
       }
 
       .sidebar-nav {
@@ -734,6 +755,7 @@
       <div class="sidebar-title">
         <div>ISO 27000系列介紹</div>
         <div>資訊安全管理與稽核基礎</div>
+        <div class="licence">CC BY-NC-SA 4.0</div>
       </div>
       <div class="sidebar-nav">
         <div class="nav-item active" data-slide="1">
@@ -765,6 +787,13 @@
           <span>📌</span> 延伸討論與閱讀
         </div>
         <div class="nav-item" data-slide="11"><span>📌</span> 課程總結</div>
+      </div>
+      <div class="sidebar-powered-block">
+        <div class="powered-by">
+          <i class="fas fa-heart"></i> Powered by Claude 3.7 sonnet.
+          <br />
+          <i class="fas fa-person-praying"></i> Thanks to Ruta Lai's prompt template.
+        </div>
       </div>
     </div>
 
